@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+</head>
+
+<body>
+
+  <ul id="dropdown1" class="dropdown-content">
+    <li><a href="#!">Gabriel Corre</a></li>
+    <li><a href="https://pierrezemb.fr">Pierre Zemb</a></li>
+  </ul>
+
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo">Webstagram</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+
+        <li><a class="dropdown-button" href="#!" data-activates="dropdown1">By<i class="material-icons right">arrow_drop_down</i></a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="row">
+    <center>
+      <div class="col s6" id="tripmeter">
+        <video id="video" autoplay></video>
+        <a id="snap" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">videocam</i></a>
+      </div>
+      <div class="col s6">
+        <canvas id="canvas" width="640" height="480"></canvas>
+        <a id="dl" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">play_for_work</i></a>
+      </div>
+    </div>
+  </center>
+
+  <div class="row">
+    <center>
+
+      <div class="col s12" id="tripmeter">
+        <div id="googleMap" style="width:500px;height:380px;"></div>
+        <p>
+          <span id="startLat"></span>, <span id="startLon"></span>
+          </p>
+      </div>
+    </center>
+  </div>
+
+
+  <!--Import jQuery before materialize.js-->
+  <script src="http://maps.googleapis.com/maps/api/js"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
