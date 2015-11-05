@@ -8,12 +8,13 @@
 
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8"/> 
 </head>
 
-<body>
+<body class="brown lighten-4">
 
   <ul id="dropdown1" class="dropdown-content">
-    <li><a href="#!">Gabriel Corre</a></li>
+    <li><a href="https://www.linkedin.com/profile/view?id=AAkAAA8x3ogBX-rqtDcbduDbc2frDIRnyhFryV0">Gabriel Corre</a></li>
     <li><a href="https://pierrezemb.fr">Pierre Zemb</a></li>
   </ul>
 
@@ -29,34 +30,74 @@
 
   <div class="row">
     <center>
-      <div class="col s12 m12 l6" id="tripmeter">
-        <video id="video" autoplay></video>
-        <a id="snap" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">videocam</i></a>
+      <div class="col l8 s12" id="tripmeter">
+        <video id="source" width="320" height="240" style="display:none;"></video>
+        <canvas id="target" width="640" height="480"></canvas> 
+        <div style="text-align:center">
+          <a id="snap" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">videocam</i></a>
+          <a id="dl" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">play_for_work</i></a>
+          <a id="replay" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">replay</i></a>
+        </div>
       </div>
-      <div class="col s12 m12 l6">
-        <canvas id="canvas" width="640" height="480"></canvas>
-        <a id="dl" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">play_for_work</i></a>
+
+
+      <div class="col l4 s12">
+        <div class="collection">
+          <a href="#!" id="EffectNone" class="collection-item">No effect</a>
+          <a href="#!" id="EffectEdge" class="collection-item">Edge</a>
+          <a href="#!" id="EffectMirror" class="collection-item">Mirror</a>
+          <a href="#!" id="EffectNightVision" class="collection-item">NightVision</a>
+          <a href="#!" id="EffectInvert" class="collection-item">Invert</a>
+          <a href="#!" id="EffectTvGlitch" class="collection-item">TvGlitch</a>
+          <a href="#!" id="EffectAscii" class="collection-item">ASCII</a>
+          <a href="#!" id="Effectfilmgrain" class="collection-item">Film Grain</a>
+          <a href="#!" id="Effecthex" class="collection-item">Hex</a>
+          <a href="#!" id="EffectPixelate" class="collection-item">Pixelate</a>
+          <a href="#!" id="EffectKaleidoscope" class="collection-item">Kaleidoscope</a>
+        </div>
       </div>
     </div>
   </center>
 
-  <div class="row">
-    <center>
+  <div>
 
-      <div class="col s12" id="tripmeter">
-        <div id="googleMap" style="width:500px;height:380px;"></div>
-        <p>
-          <span id="startLat"></span>, <span id="startLon"></span>
-          </p>
-      </div>
-    </center>
   </div>
+
+  <div class="row" id="googleMap" style="height:380px;"></div>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Webstagram</h5>
+          <p class="grey-text text-lighten-4">Made by love for ISEN GL</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2015 Copyright Pierre Zemb - Gabriel Corré
+      </div>
+    </div>
+  </footer>
 
 
   <!--Import jQuery before materialize.js-->
   <script src="http://maps.googleapis.com/maps/api/js"></script>
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="js/Seriously/seriously.js"></script>
+  <script src="js/Seriously/effects/seriously.invert.js"></script>
+  <script src="js/Seriously/effects/seriously.ascii.js"></script>
+  <script src="js/Seriously/effects/seriously.nightvision.js"></script>
+  <script src="js/Seriously/effects/seriously.pixelate.js"></script>
+  <script src="js/Seriously/effects/seriously.kaleidoscope.js"></script>
+  <script src="js/Seriously/effects/seriously.hex.js"></script>
+  <script src="js/Seriously/effects/seriously.filmgrain.js"></script>
+  <script src="js/Seriously/effects/seriously.tvglitch.js"></script>
+  <script src="js/Seriously/effects/seriously.mirror.js"></script>
+  <script src="js/Seriously/effects/seriously.edge.js"></script>
+  <script src="js/Seriously/effects/seriously.split.js"></script>
   <script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
