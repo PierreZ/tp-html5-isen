@@ -142,7 +142,9 @@ h = 480;
 	});
 	document.getElementById('dl').addEventListener('click', function() {
 		v.pause();
-		downloadCanvas(this, 'canvas', 'image.png');
+		// Waiting for a new rendering without visor
+		setTimeout(downloadCanvas(this, 'canvas', 'image.png');,50);
+		
 	}, false);
 	document.getElementById('replay').addEventListener('click', function() {
 		v.play();
