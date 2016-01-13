@@ -141,6 +141,7 @@ h = 480;
 		v.pause();
 	});
 	document.getElementById('dl').addEventListener('click', function() {
+		v.pause();
 		downloadCanvas(this, 'canvas', 'image.png');
 	}, false);
 	document.getElementById('replay').addEventListener('click', function() {
