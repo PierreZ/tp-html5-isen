@@ -1,176 +1,165 @@
-// http://www.html5rocks.com/en/tutorials/getusermedia/intro/
-// http://davidwalsh.name/browser-camera
+var isStreaming = false,
+v = document.getElementById('video'),
+c = document.getElementById('canvas'),
+con = c.getContext('2d');
+w = 640, 
+h = 480;
 
-		// declare our variables
-		var seriously, // the main object that holds the entire composition
-			gUM, // will reference getUserMedia or whatever browser-prefixed version we can find
-			URL, // will reference window.URL or whatever browser-prefixed version we can find
-			video, // video element
-			source, // wrapper object for source video
-			flip, // flip effect
-			effect, // edge detection effect
-			target; // a wrapper object for our target canvas
+(function() {
+
+	window.addEventListener('DOMContentLoaded', function() {
+		var isStreaming = false,
+		v = document.getElementById('video'),
+		c = document.getElementById('canvas'),
+		con = c.getContext('2d');
+		w = 640, 
+		h = 480,
 
 
-			var localMediaStream = null;
-// check for Geolocation support
-if (navigator.geolocation) {
-	console.log('Geolocation is supported!');
-}
-else {
-	console.log('Geolocation is not supported for this Browser/OS version yet.');
-}
-
-window.onload = function() {
-
-	// Position's stuff
-	var startPos;
-	navigator.geolocation.getCurrentPosition(function(position) {
-		startPos = position;
-		// document.getElementById('startLat').innerHTML = startPos.coords.latitude;
-		// document.getElementById('startLon').innerHTML = startPos.coords.longitude;
-		initializeMaps(startPos.coords.latitude,startPos.coords.longitude);
-	}, function(error) {
-		alert('Error occurred. Error code: ' + error.code);
-    // error.code can be:
-    //   0: unknown error
-    //   1: permission denied
-    //   2: position unavailable (error response from locaton provider)
-    //   3: timed out
-});
-		// detect browser-prefixed getUserMedia
-		gUM = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia;
-
-		// detect browser-prefixed window.URL
-		URL = window.URL || window.webkitURL || window.mozURL || window.msURL;
-
-		// grab the video element
-		video = document.getElementById('source');
-
-		// construct our seriously object
-		seriously = new Seriously();
-
-		// grab the video stream
-		if (gUM) {
-			gUM.call(navigator,
-				{video: true},
-				// success callback
-				function(stream){
-					// check for firefox
-					if (video.mozCaptureStream) {
-						video.mozSrcObject = stream;
-					} else {
-						video.src = (URL && URL.createObjectURL(stream)) || stream;
-					}
-					video.play();
-				},
-				// error callback
-				function(error){
-					console.log('An error occurred: ' + (error.message || error.name));
-				}
-				);
+		// Cross browser
+		navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+		if (navigator.getUserMedia) {
+			// Request access to video only
+			navigator.getUserMedia(
+			{
+				video:true,
+				audio:false
+			},		
+			function(stream) {
+					// Cross browser checks
+					var url = window.URL || window.webkitURL;
+					v.src = url ? url.createObjectURL(stream) : stream;
+        			// Set the video to play
+        			v.play();
+        		},
+        		function(error) {
+        			alert('Something went wrong. (error code ' + error.code + ')');
+        			return;
+        		}
+        		);
+		}
+		else {
+			alert('Sorry, the browser you are using doesn\'t support getUserMedia');
+			return;
 		}
 
-		// wait until video is ready
-		video.addEventListener('canplay', function(){
+		// Wait until the video stream can play
+		v.addEventListener('canplay', function(e) {
+			if (!isStreaming) {
+		    	// videoWidth isn't always set correctly in all browsers
+		    	if (v.videoWidth > 0) h = v.videoHeight / (v.videoWidth / w);
+		    	c.setAttribute('width', w);
+		    	c.setAttribute('height', h);
+				// Reverse the canvas image
+				con.translate(w, 0);
+				con.scale(-1, 1);
+				isStreaming = true;
+			}
+		}, false);
 
-			applyFilter("");
-		});
+			// check for Geolocation support
+	if (navigator.geolocation) {
+		console.log('Geolocation is supported!');
+	}
+	else {
+		console.log('Geolocation is not supported for this Browser/OS version yet.');
+	}
+	function geo_success(position) {
+		initializeMaps(position.coords.latitude, position.coords.longitude);
+	}
+
+	function geo_error(error) {
+		console.log('ERROR(' + error.code + '): ' + error.message);
+	}
+
+	var wpid = navigator.geolocation.getCurrentPosition(geo_success, geo_error);
+
+		// Wait for the video to start to play
+		v.addEventListener('play', function() {
+			// Every 33 milliseconds copy the video image to the canvas
+			setInterval(function() {
+
+				con.fillRect(0, 0, w, h);
+				con.drawImage(v, 0, 0, w, h);
+				if (v.paused || v.ended) return;
+				// draw cross
+	            con.beginPath();
+	            con.arc(320, 245, 45, 0, Math.PI * 2, true);
+	            con.strokeStyle = "RED";
+	            con.stroke();
+
+	            //Shape1;
+	            con.shadowColor = "rgba(0,0,0,0)";
+	            con.strokeStyle = "RED";
+	            con.lineWidth = 2;
+	            con.lineCap = "butt";
+	            con.lineJoin = "miter";
+	            con.beginPath();
+	            con.moveTo(275, 245);
+	            con.lineTo(230, 245);
+	            con.stroke();
+
+	            //Shape2;
+	            con.shadowColor = "rgba(0,0,0,0)";
+	            con.strokeStyle = "RED";
+	            con.lineWidth = 2;
+	            con.lineCap = "butt";
+	            con.lineJoin = "miter";
+	            con.beginPath();
+	            con.moveTo(365, 245);
+	            con.lineTo(410, 245);
+	            con.stroke();
+
+	            //Shape3;
+	            con.shadowColor = "rgba(0,0,0,0)";
+	            con.strokeStyle = "RED";
+	            con.lineWidth = 2;
+	            con.lineCap = "butt";
+	            con.lineJoin = "miter";
+	            con.beginPath();
+	            con.moveTo(320, 200);
+	            con.lineTo(320, 155);
+	            con.stroke();
+
+	            //Shape4;
+	            con.shadowColor = "rgba(0,0,0,0)";
+	            con.strokeStyle = "RED";
+	            con.lineWidth = 2;
+	            con.lineCap = "butt";
+	            con.lineJoin = "miter";
+	            con.beginPath();
+	            con.moveTo(320, 290);
+	            con.lineTo(320, 335);
+	            con.stroke();
+
+			}, 33);
+		}, false);
+	})
 
 	// Trigger photo take
 	document.getElementById("snap").addEventListener("click", function() {
-		seriously.stop();
-		//context.drawImage(video, 0, 0, 640, 480);
-
+		v.pause();
 	});
-
-	// TODO: regexp
 	document.getElementById('dl').addEventListener('click', function() {
-		seriously.stop();
-		downloadCanvas(this, 'target', 'image.png');
+		downloadCanvas(this, 'canvas', 'image.png');
 	}, false);
 	document.getElementById('replay').addEventListener('click', function() {
-		seriously.go();
+		v.play();
 	}, false);
-	
-	document.getElementById('EffectEdge').addEventListener('click', function() {
-		applyFilter("edge");
-	}, false);	
-	document.getElementById('EffectMirror').addEventListener('click', function() {
-		applyFilter("mirror");
-	}, false);
-	document.getElementById('EffectNone').addEventListener('click', function() {
-		applyFilter("");
-	}, false);
-	document.getElementById('EffectInvert').addEventListener('click', function() {
-		applyFilter("invert");
-	}, false);
-	document.getElementById('EffectTvGlitch').addEventListener('click', function() {
-		applyFilter("tvglitch");
-	}, false);
-	document.getElementById('EffectNightVision').addEventListener('click', function() {
-		applyFilter("nightvision");
-	}, false);
-	document.getElementById('EffectAscii').addEventListener('click', function() {
-		applyFilter("ascii");
-	}, false);
-	document.getElementById('Effectfilmgrain').addEventListener('click', function() {
-		applyFilter("filmgrain");
-	}, false);
-	document.getElementById('Effecthex').addEventListener('click', function() {
-		applyFilter("hex");
-	}, false);
-	document.getElementById('EffectPixelate').addEventListener('click', function() {
-		applyFilter("pixelate");
-	}, false);
-	document.getElementById('EffectKaleidoscope').addEventListener('click', function() {
-		applyFilter("kaleidoscope");
-	}, false);
-};
-
-function applyFilter(filter){
-
-	// time to get serious
-	source = seriously.source(video);
-	target = seriously.target('#target');
-	flip = seriously.transform('flip');
-	flip.direction = 'horizontal';
-    flip.source = video; // implicitly create a hidden source node
-
-    if (filter.length !== 0) {
-    	effect = seriously.effect(filter);
-			// connect all our nodes in the right order
-			effect.source = flip;
-			target.source = effect;
-		}else{
-			target.source = flip;
-		};
-		seriously.go();
-	}
-
-
-	function initializeMaps(lat,longi) {
-		var mapProp = {
-			center:new google.maps.LatLng(lat,longi),
-			zoom:10,
-			animation:google.maps.Animation.BOUNCE,
-			mapTypeId:google.maps.MapTypeId.HYBRID
-		};
-
-		var marker=new google.maps.Marker({
-			position:mapProp.center,
-		});
-
-		var infowindow = new google.maps.InfoWindow({
-			content:lat + "º " + longi +"º"
-		});
-
-		var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
-		marker.setMap(map);
-		infowindow.open(map,marker);
-	}
 
 	function downloadCanvas(link, canvasId, filename) {
 		link.href = document.getElementById(canvasId).toDataURL();
 		link.download = filename;
 	}
+	// http://leafletjs.com/examples/quick-start.html
+function initializeMaps(lat,longi) {
+
+	var map = L.map('map').setView([lat, longi], 13);
+	L.marker([lat, longi]).addTo(map)
+	.bindPopup(lat + "º " + longi +"º").openPopup();
+	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+}
+})();
+

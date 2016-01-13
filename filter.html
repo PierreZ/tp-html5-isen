@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="css/lol.css" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+
+   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet/v0.7.7/leaflet.js"></script>
+
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8"/> 
+</head>
+
+<body class="brown lighten-4">
+
+    <nav>
+    <div class="nav-wrapper">
+<a href="#" class="brand-logo">Webstagram</a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="index.html">Simple Version</a></li>
+        <li><a href="filter.html">Filter Version</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="row">
+    <center>
+      <div class="col l8 s12" id="tripmeter">
+        <video id="source" width="320" height="240" style="display:none;"></video>
+        <canvas id="target" width="640" height="480"></canvas> 
+        <div style="text-align:center">
+          <a id="snap" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">videocam</i></a>
+          <a id="dl" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">play_for_work</i></a>
+          <a id="replay" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">replay</i></a>
+        </div>
+      </div>
+
+
+      <div class="col l4 s12">
+        <div class="collection">
+          <a href="#!" id="EffectNone" class="collection-item">No effect</a>
+          <a href="#!" id="EffectEdge" class="collection-item">Edge</a>
+          <a href="#!" id="EffectMirror" class="collection-item">Mirror</a>
+          <a href="#!" id="EffectNightVision" class="collection-item">NightVision</a>
+          <a href="#!" id="EffectInvert" class="collection-item">Invert</a>
+          <a href="#!" id="EffectTvGlitch" class="collection-item">TvGlitch</a>
+          <a href="#!" id="EffectAscii" class="collection-item">ASCII</a>
+          <a href="#!" id="Effectfilmgrain" class="collection-item">Film Grain</a>
+          <a href="#!" id="Effecthex" class="collection-item">Hex</a>
+          <a href="#!" id="EffectPixelate" class="collection-item">Pixelate</a>
+          <a href="#!" id="EffectKaleidoscope" class="collection-item">Kaleidoscope</a>
+        </div>
+      </div>
+    </div>
+  </center>
+
+  <div>
+
+  </div>
+
+  <div class="row" id="map" style="height:380px;"></div>
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Webstagram</h5>
+          <p class="grey-text text-lighten-4">Made by love for ISEN GL</p>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2015 Copyright Pierre Zemb - Gabriel Corré
+      </div>
+    </div>
+  </footer>
+
+  <!--Import jQuery before materialize.js-->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script src="js/seriously.js"></script>
+  <script src="js/effects/seriously.invert.js"></script>
+  <script src="js/effects/seriously.ascii.js"></script>
+  <script src="js/effects/seriously.nightvision.js"></script>
+  <script src="js/effects/seriously.pixelate.js"></script>
+  <script src="js/effects/seriously.kaleidoscope.js"></script>
+  <script src="js/effects/seriously.hex.js"></script>
+  <script src="js/effects/seriously.filmgrain.js"></script>
+  <script src="js/effects/seriously.tvglitch.js"></script>
+  <script src="js/effects/seriously.mirror.js"></script>
+  <script src="js/effects/seriously.edge.js"></script>
+  <script src="js/effects/seriously.split.js"></script>
+  <script type="text/javascript" src="js/filter.js"></script>
+</body>
+</html>
