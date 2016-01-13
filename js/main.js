@@ -77,62 +77,7 @@ h = 480;
 		// Wait for the video to start to play
 		v.addEventListener('play', function() {
 			// Every 33 milliseconds copy the video image to the canvas
-			setInterval(function() {
-
-				con.fillRect(0, 0, w, h);
-				con.drawImage(v, 0, 0, w, h);
-				if (v.paused || v.ended) return;
-				// draw cross
-	            con.beginPath();
-	            con.arc(320, 245, 45, 0, Math.PI * 2, true);
-	            con.strokeStyle = "RED";
-	            con.stroke();
-
-	            //Shape1;
-	            con.shadowColor = "rgba(0,0,0,0)";
-	            con.strokeStyle = "RED";
-	            con.lineWidth = 2;
-	            con.lineCap = "butt";
-	            con.lineJoin = "miter";
-	            con.beginPath();
-	            con.moveTo(275, 245);
-	            con.lineTo(230, 245);
-	            con.stroke();
-
-	            //Shape2;
-	            con.shadowColor = "rgba(0,0,0,0)";
-	            con.strokeStyle = "RED";
-	            con.lineWidth = 2;
-	            con.lineCap = "butt";
-	            con.lineJoin = "miter";
-	            con.beginPath();
-	            con.moveTo(365, 245);
-	            con.lineTo(410, 245);
-	            con.stroke();
-
-	            //Shape3;
-	            con.shadowColor = "rgba(0,0,0,0)";
-	            con.strokeStyle = "RED";
-	            con.lineWidth = 2;
-	            con.lineCap = "butt";
-	            con.lineJoin = "miter";
-	            con.beginPath();
-	            con.moveTo(320, 200);
-	            con.lineTo(320, 155);
-	            con.stroke();
-
-	            //Shape4;
-	            con.shadowColor = "rgba(0,0,0,0)";
-	            con.strokeStyle = "RED";
-	            con.lineWidth = 2;
-	            con.lineCap = "butt";
-	            con.lineJoin = "miter";
-	            con.beginPath();
-	            con.moveTo(320, 290);
-	            con.lineTo(320, 335);
-	            con.stroke();
-
-			}, 33);
+			setInterval(renderCanvas, 33);
 		}, false);
 	})
 
@@ -142,8 +87,9 @@ h = 480;
 	});
 	document.getElementById('dl').addEventListener('click', function() {
 		v.pause();
-		// Waiting for a new rendering without visor
-		setTimeout(downloadCanvas(this, 'canvas', 'image.png');,50);
+		// Rendering a new time without visor
+		renderCanvas();
+		downloadCanvas(this, 'canvas', 'image.png');
 		
 	}, false);
 	document.getElementById('replay').addEventListener('click', function() {
@@ -163,6 +109,63 @@ function initializeMaps(lat,longi) {
 	L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
     	attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 	}).addTo(map);
+}
+
+function renderCanvas(){
+
+	con.fillRect(0, 0, w, h);
+	con.drawImage(v, 0, 0, w, h);
+	if (v.paused || v.ended) return;
+	// draw cross
+    con.beginPath();
+    con.arc(320, 245, 45, 0, Math.PI * 2, true);
+    con.strokeStyle = "RED";
+    con.stroke();
+
+    //Shape1;
+    con.shadowColor = "rgba(0,0,0,0)";
+    con.strokeStyle = "RED";
+    con.lineWidth = 2;
+    con.lineCap = "butt";
+    con.lineJoin = "miter";
+    con.beginPath();
+    con.moveTo(275, 245);
+    con.lineTo(230, 245);
+    con.stroke();
+
+    //Shape2;
+    con.shadowColor = "rgba(0,0,0,0)";
+    con.strokeStyle = "RED";
+    con.lineWidth = 2;
+    con.lineCap = "butt";
+    con.lineJoin = "miter";
+    con.beginPath();
+    con.moveTo(365, 245);
+    con.lineTo(410, 245);
+    con.stroke();
+
+    //Shape3;
+    con.shadowColor = "rgba(0,0,0,0)";
+    con.strokeStyle = "RED";
+    con.lineWidth = 2;
+    con.lineCap = "butt";
+    con.lineJoin = "miter";
+    con.beginPath();
+    con.moveTo(320, 200);
+    con.lineTo(320, 155);
+    con.stroke();
+
+    //Shape4;
+    con.shadowColor = "rgba(0,0,0,0)";
+    con.strokeStyle = "RED";
+    con.lineWidth = 2;
+    con.lineCap = "butt";
+    con.lineJoin = "miter";
+    con.beginPath();
+    con.moveTo(320, 290);
+    con.lineTo(320, 335);
+    con.stroke();
+
 }
 })();
 
